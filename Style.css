@@ -1,0 +1,158 @@
+/* Réinitialisation générale */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+    overflow-x: hidden;
+    background-color: #0f172a;
+}
+
+/* Image d'arrière-plan floutée (Élèves en tenue Khaki) */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Image Unsplash représentant des élèves en uniforme khaki */
+    background: linear-gradient(rgba(15, 23, 42, 0.55), rgba(15, 23, 42, 0.55)), 
+                url('https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=1600&auto=format&fit=crop') no-repeat center center / cover;
+    filter: blur(6px);
+    transform: scale(1.05); /* Évite les bords blancs à cause du flou */
+    z-index: -1;
+}
+
+/* Conteneur principal (Formulaire en verre) */
+form {
+    background: rgba(15, 23, 42, 0.55);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 16px;
+    padding: 35px 40px;
+    width: 100%;
+    max-width: 680px; /* Plus large pour accueillir 2 colonnes */
+    border-top: 5px solid #008751; /* Vert Côte d'Ivoire / Éduc'Ivoire */
+    border-left: 1px solid rgba(255, 255, 255, 0.15);
+    border-right: 1px solid rgba(255, 255, 255, 0.15);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Titre */
+h1 {
+    color: #ff5722;
+    font-size: 24px;
+    font-weight: 800;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 25px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Grille à 2 colonnes */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Champ occupant les 2 colonnes */
+.form-group.full-width {
+    grid-column: span 2;
+}
+
+/* Libellés */
+label {
+    color: #f8fafc;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.fois {
+    color: #ff4d4d;
+    font-weight: bold;
+}
+
+/* Saisie de texte (Inputs) */
+input {
+    width: 100%;
+    padding: 11px 14px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.25s ease;
+}
+
+input::placeholder {
+    color: rgba(255, 255, 255, 0.45);
+}
+
+input:focus {
+    background: rgba(255, 255, 255, 0.22);
+    border-color: #ff5722;
+    box-shadow: 0 0 12px rgba(255, 87, 34, 0.35);
+}
+
+/* Bouton d'envoi */
+button[type="submit"] {
+    width: 100%;
+    margin-top: 28px;
+    padding: 14px;
+    background: linear-gradient(135deg, #ff5722, #e64a19);
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(255, 87, 34, 0.4);
+}
+
+button[type="submit"]:hover {
+    background: linear-gradient(135deg, #ff7043, #ff5722);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 87, 34, 0.5);
+}
+
+button[type="submit"]:active {
+    transform: translateY(0);
+}
+
+/* Responsive : passage sur 1 colonne sur smartphone */
+@media (max-width: 580px) {
+    form {
+        padding: 25px 20px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group.full-width {
+        grid-column: span 1;
+    }
+}
